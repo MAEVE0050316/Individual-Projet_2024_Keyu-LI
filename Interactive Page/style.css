@@ -1,0 +1,63 @@
+body {
+  display: flex;
+  margin: 0;
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Prevent scrolling */
+}
+
+#colorList {
+  flex: 1; /* Takes up half of the available space */
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-content: flex-start; /* Align the flex items at the start of the container */
+}
+
+#canvas {
+  flex: 1; /* Takes up the remaining half of the available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colorOption {
+  flex: 0 0 calc(25% - 40px); /* Adjust width to fit 4 items in a row */
+  padding: 5px; /* Adjust padding to ensure it fits */
+  margin: 5px; /* Consistent margin for all sides */
+  text-align: center;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drop-zone {
+  width: 200px;
+  height: 50px;
+  border: 2px dashed #ccc;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5); /* Semi-transparent */
+  text-align: center;
+  line-height: 50px; /* Vertically center text */
+  color: #000;
+}
+
+#fontColorDropZone {
+  top: 10px; /* Position as needed */
+  right: 10px;
+}
+
+#backgroundColorDropZone {
+  top: 70px; /* Position as needed */
+  right: 10px;
+}
+
+#tpColorDropZone {
+  top: 130px; /* Position as needed */
+  right: 10px;
+}
