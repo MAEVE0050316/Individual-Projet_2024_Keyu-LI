@@ -1,3 +1,9 @@
+//color palette generation from "The most expensive toilet paper in the world", Keyu LI, 2024,
+//This is the color paletten generation code, you can run it and name the colors based on your perception;
+//No other limitations, except that the name of each color cannot be repeated;
+//After your downloading the JSON file you can put it on the Intercative Page folder;
+//Then your palette will be shown on it.
+
 document.addEventListener('DOMContentLoaded', (event) => {
 
 let currentImageIndex = 0;

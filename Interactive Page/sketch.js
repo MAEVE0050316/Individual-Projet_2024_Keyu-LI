@@ -1,9 +1,15 @@
-let tpModel; // This will be your 3D model
-let customFont; // Font for text rendering
+//interactive page from "The most expensive toilet paper in the world", Keyu LI, 2024,
+//This is the interactive page;
+//After your downloading the JSON file from the color paleette generation code you can put it here;
+//And then, run the code.
+//Have a fun!!!
 
-let colors = []; // Array of colors from JSON
+let tpModel; 
+let customFont; 
+
+let colors = []; 
 let fontColor = '#000000';
-let backgroundColor = '#DCDCDC'; // Initial background color of the rectangle
+let backgroundColor = '#DCDCDC'; 
 let tpColor = '#FFFFFF';
 let frame;
 
@@ -16,20 +22,19 @@ function preload() {
   tpModel = loadModel('weishengzhi.obj', true);
   customFont = loadFont('font.ttf');
   frame = loadImage('frame.png');
-  // Load the color palette and then initialize the color list after loading
+
   loadJSON('palette.json', function(loadedColors) {
-    colors = loadedColors; // Now colors is populated with the loaded data
-    initColorList(); // Call initColorList after the colors are loaded
+    colors = loadedColors; 
+    initColorList(); 
   });
 }
 
 
 function setup() {
-  //createCanvas(800, 600, WEBGL);
   createCanvas(windowWidth / 2, windowHeight, WEBGL);
   textSize(70);
   textFont(customFont);
-  // Make sure colors is an array before calling forEach
+
   if (Array.isArray(colors)) {
     initColorList();
   }
@@ -39,35 +44,28 @@ function setup() {
 function draw() {
   background(255);
   directionalLight(255, 255, 255, 1, 1, -1);
-  ambientLight(180);
-  // Assuming the text and model should be centered in their half of the canvas
-  let centerX = canvas.width / 4; // Half of the canvas width
-  let modelX = centerX; // Center of the right half for the model
+  let centerX = canvas.width / 4; 
+  let modelX = centerX; 
 
 
   // back：
   push();
-  fill(backgroundColor); // Use the fontColor for the text
+  fill(backgroundColor); 
   noStroke();
   translate(-300, -400);
   rect(0, 0, 600,800);
   pop();
-
-  // Draw the text with fontColor
   push();
-  fill(fontColor); // Use the fontColor for the text
+  fill(fontColor); 
   textAlign(CENTER, CENTER);
-
-  // The text should be centered in the left half of the canvas
   translate(0, 150);
   text('The world‘s \nmost expensive \ntoilet paper!', 0, 0);
   pop();
 
-  // Position and draw the 3D model with tpColor
   push();
   translate(0, -150);
   rotateY(frameCount * 0.01);
-  fill(tpColor); // Use the tpColor for the model
+  fill(tpColor); 
   noStroke();
   scale(1.5);
   model(tpModel);
@@ -94,7 +92,6 @@ function draw() {
 
 
 function initColorList() {
-  // No need to check if colors is an array here since we're calling it after loadJSON
   const colorListDiv = document.getElementById('colorList');
   colors.forEach(colorObj => {
     let div = document.createElement('div');
@@ -113,12 +110,9 @@ function initColorList() {
 }
 
 function setupDropZones() {
-  // Get references to the drop zone elements
   const fontColorDropZone = document.getElementById('fontColorDropZone');
   const backgroundColorDropZone = document.getElementById('backgroundColorDropZone');
   const tpColorDropZone = document.getElementById('tpColorDropZone');
-
-  // Add event listeners for dragover and drop events
   [fontColorDropZone, backgroundColorDropZone, tpColorDropZone].forEach(zone => {
     zone.addEventListener('dragover', event => event.preventDefault());
 
@@ -132,7 +126,7 @@ function setupDropZones() {
       } else if (zone === tpColorDropZone) {
         tpColor = colorObj.color;
       }
-      redraw(); // This will trigger p5.js to redraw the canvas with new colors
+      redraw(); 
     });
   });
 }
